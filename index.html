@@ -254,16 +254,15 @@ Label-Sensitive Task Grouping by Bayesian Nonparametric Approach for Multi-Task 
   <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=Q3fjA-lT7axmrJAxLvUg0SNYMLV8WlcgoibJh57aPAM&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=f7eded'></script>
 </div>
 <script>
+  // 等页面加载完（确保 clustrmaps 生成了 DOM ）
   window.onload = function() {
     const container = document.getElementById('clustrmaps-container');
     if (container) {
-      const link = container.querySelector('a'); 
-      if (link) {
-        link.removeAttribute('href'); // 移除跳转链接
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-        });
-      }
+      // 监听容器内的点击事件
+      container.addEventListener('click', function(e) {
+        e.preventDefault(); // 阻止默认跳转行为
+        e.stopPropagation(); // 阻止事件冒泡（可选，看需求）
+      }, true); // true 表示捕获阶段监听，优先拦截
     }
   };
 </script>
